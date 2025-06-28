@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>PlayLoot</title>
+<style>
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
+  }
+  body, html {
+    height: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    color: white;
+  }
+  header {
+    padding: 20px;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-align: center;
+    background: rgba(0,0,0,0.4);
+  }
+  .container {
+    max-width: 1200px;
+    margin: 20px auto 40px;
+    padding: 0 15px;
+    display: none; /* Initially hidden */
+    gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .product {
+    background: rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 0 10px #ff6f61aa;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .product img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 15px;
+  }
+  .product h3 {
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+  }
+  .product p {
+    color: #ccc;
+    margin-bottom: 10px;
+    min-height: 40px;
+  }
+  .price {
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: #ff6f61;
+    margin-bottom: 15px;
+  }
+  .buy-btn {
+    background: #ff6f61;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 40px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: background 0.3s ease;
+  }
+  .buy-btn:hover {
+    background: #e85c50;
+  }
+  #shopNowBtn {
+    display: block;
+    margin: 50px auto;
+    background: #ff6f61;
+    border: none;
+    padding: 18px 60px;
+    border-radius: 40px;
+    font-size: 2rem;
+    font-weight: 700;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(255,111,97,0.6);
+    transition: background 0.3s ease;
+  }
+  #shopNowBtn:hover {
+    background: #e85c50;
+  }
+  @media (max-width: 900px) {
+    .container {
+      grid-template-columns: 1fr;
+    }
+    .product img {
+      height: 200px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>PlayLoot</header>
+
+<button id="shopNowBtn">Shop Now</button>
+
+<div class="container" id="productContainer">
+  <!-- מוצרים יוצגו כאן -->
+</div>
+
+<script>
+  const products = [
+    {
+      name: 'RGB Gaming Mouse',
+      description: 'High precision wired mouse with RGB lighting.',
+      price: '$25',
+      img: 'https://ae01.alicdn.com/kf/Hbc5a824db79a4ab3a825e1a510f048cfS/Pro-Gamer-RGB-Wired-Mouse-High-Precision-6-DPI-Gaming-Mouse-USB-Computer-PC-Laptop-Mouse-For-Gamers.jpg',
+      link: '#'
+    },
+    {
+      name: 'RGB Desk Lamp',
+      description: 'Color changing touch control lamp.',
+      price: '$15',
+      img: 'https://ae01.alicdn.com/kf/H91eeeb5440ea4ec89c60d7e4696e6e11I/LED-Desk-Lamp-RGB-Color-Changing-Touch-Control-Table-Lamp-Reading-Work-Lights-With-USB-Charging-Port.jpg',
+      link: '#'
+    },
+    {
+      name: 'Anime Pop Figure',
+      description: 'Collectible anime character figure.',
+      price: '$30',
+      img: 'https://ae01.alicdn.com/kf/Hf1378ca1b13e43e3b3dd5278fbb218a3y/Anime-Pop-Vinyl-Figure-Collectible-Toys-Action-Figure.jpg',
+      link: '#'
+    }
+  ];
+
+  const productContainer = document.getElementById('productContainer');
+  const shopNowBtn = document.getElementById('shopNowBtn');
+
+  function showProducts() {
+    productContainer.innerHTML = '';
+    products.forEach(prod => {
+      const prodDiv = document.createElement('div');
+      prodDiv.className = 'product';
+      prodDiv.innerHTML = `
+        <img src="${prod.img}" alt="${prod.name}">
+        <h3>${prod.name}</h3>
+        <p>${prod.description}</p>
+        <div class="price">${prod.price}</div>
+        <a href="${prod.link}" class="buy-btn">Buy Now</a>
+      `;
+      productContainer.appendChild(prodDiv);
+    });
+    productContainer.style.display = 'grid';
+    shopNowBtn.style.display = 'none';
+  }
+
+  shopNowBtn.addEventListener('click', showProducts);
+</script>
+
+</body>
+</html>
